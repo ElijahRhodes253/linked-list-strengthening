@@ -63,7 +63,7 @@ public class Exercises {
             c2 = current;
             current = current.next;
         }
-        
+
         c2.next = null;
         return head;
     }
@@ -80,7 +80,15 @@ public class Exercises {
      * @return the minimum value in the list 
      */
     public static int min(ListNode head) {
-        return -1;
+        if(head == null){return Integer.MAX_VALUE;}
+        int min = head.data;
+        ListNode current = head;
+        while(current != null)
+        {
+            if(current.data < min){min = current.data;}
+            current = current.next;
+        }
+        return min;
     }
 
     /**
@@ -101,6 +109,21 @@ public class Exercises {
      * @return the head of the list with the first instance of the minimum value removed
      */
     public static ListNode removeMin(ListNode head) {
+        if(head == null){return null;}
+        int min = min(head);
+        ListNode current = head;
+        
+        if(head.data == min){return head.next;}
+
+        while(current != null)
+        {
+            if(current.next.data == min)
+            {
+                current.next = current.next.next;
+                return head;
+            }
+            current = current.next;
+        }
         return null;
     }
 
